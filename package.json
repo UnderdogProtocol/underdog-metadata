@@ -1,0 +1,11 @@
+{
+  "name": "lambda path",
+  "description": "Fetch an image from remote source (URL) and then upload the image to a S3 bucket.",
+  "version": "1.0.0",
+  "author": "Madhur Dixit",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.7.9",
+    "axios": "^1.2.2"
+  }
+}
