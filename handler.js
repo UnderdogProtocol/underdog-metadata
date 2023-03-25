@@ -8,7 +8,7 @@ module.exports.redirectmain = async (event, context, callback) => {
   let redirectAddress = event.path.slice(10);
   // let datastring = bodyobj.slice(10);
 
-  let tk = "https://underdog-test-bucket-dev.s3.ca-central-1.amazonaws.com/"+redirectAddress+"/image.json"
+  let tk = "https://underdog-test-bucket-prod.s3.us-west-1.amazonaws.com/"+redirectAddress+"/image.json"
 
   var config = {
     method: 'get',
@@ -41,11 +41,11 @@ module.exports.redirectmainimg = async (event, context, callback) => {
   let redirectAddress = event.path.slice(9);
   // let datastring = bodyobj.slice(10);
 
-  let tk = "https://underdog-test-bucket-dev.s3.ca-central-1.amazonaws.com/"+redirectAddress+"/image.png"
-
-  let imageBase64 = '';
+  let tk = "https://underdog-test-bucket-prod.s3.us-west-1.amazonaws.com/"+redirectAddress+"/image.png"
 
   
+  let imageBase64 = '';
+
   try {
     imageBase64 = await axios
     .get(tk, { responseType: 'arraybuffer' })
@@ -55,7 +55,7 @@ module.exports.redirectmainimg = async (event, context, callback) => {
     console.error('Error fetching a small image', error);
     return reject(error);
   }
-  
+
   return {
     statusCode: 200,
     headers: {
@@ -66,4 +66,6 @@ module.exports.redirectmainimg = async (event, context, callback) => {
     body: imageBase64
   };
 
+  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
+  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
